@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Airplane.Models\**" />
+    <Compile Remove="Airplane.Services\**" />
+    <EmbeddedResource Remove="Airplane.Models\**" />
+    <EmbeddedResource Remove="Airplane.Services\**" />
+    <None Remove="Airplane.Models\**" />
+    <None Remove="Airplane.Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Airplane.Services\Airplane.Services.csproj" />
+  </ItemGroup>
+
+</Project>
