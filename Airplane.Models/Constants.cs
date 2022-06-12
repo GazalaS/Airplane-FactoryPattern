@@ -12,6 +12,7 @@
         Forward,
         Up,
         Down,
-        Dive
+        Dive,
+        Unknown
     }
 }

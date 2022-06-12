@@ -4,13 +4,11 @@ namespace Airplane.Services
 {
     public interface IAirplaneNavigationService
     {
-        void Navigate(string fileName);
-        int CalculateAirplaneNavigation(List<KeyValuePair<string, int>> commands);
+        void Navigate(string fileName){ }
     }
     public class AirplaneNavigationService : IAirplaneNavigationService
     {
         private readonly IMovementFactory _movementFactory;
-
         private IReadInputService _readInputService { get; }
         private Position _position { get; }
         private IWriteOutputService _writeOutputService { get; }
@@ -25,26 +23,28 @@ namespace Airplane.Services
 
         public void Navigate(string fileName)
         {
-            var commands = new List<KeyValuePair<string, int>>();
-            commands = _readInputService.ReadCommandsFromFile(fileName);
+            int totalPosition = 0;
+            var commands = _readInputService.ReadCommandsFromFile(fileName);
 
             _writeOutputService.WriteLine("Calculating Navigation Position...");
 
-            int totalPosition = CalculateAirplaneNavigation(commands);
+            if (commands != null)
+            {
+                totalPosition = CalculateAirplaneNavigation(commands);
+            }
 
             _writeOutputService.WriteLine(totalPosition.ToString());
         }
-        public int CalculateAirplaneNavigation(List<KeyValuePair<string, int>> commands)
+        private int CalculateAirplaneNavigation(List<KeyValuePair<string, int>> commands)
         {
             IMovement movement;
-            int totalCount;
             foreach (KeyValuePair<string, int> command in commands)
             {
                 movement = ParseMovementType(command.Key);
                 int steps = command.Value;
                 movement.Move(_position, steps);
             }
-            return totalCount = _position.Horizontal * _position.Vertical;
+            return _position.Horizontal * _position.Vertical;
         }
 
         private IMovement ParseMovementType(string movement)
@@ -60,7 +60,7 @@ namespace Airplane.Services
                 case Constants.DIVE:
                     return _movementFactory.GetMovement(MovementType.Dive);
                 default:
-                    throw new ArgumentOutOfRangeException("Invalid input.");
+                    throw new InvalidDataException("Invalid input.");
             }
         }
     }

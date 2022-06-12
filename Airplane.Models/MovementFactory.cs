@@ -25,7 +25,7 @@
                 case MovementType.Dive:
                     return (IMovement)_serviceProvider.GetService(typeof(Dive))!;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(movementType), movementType, $"Movement of {movementType} is not supported.");
+                    throw new InvalidDataException($"Movement of {movementType} is not supported.");
             }
         }
     }
