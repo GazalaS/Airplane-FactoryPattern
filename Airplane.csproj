@@ -10,10 +10,13 @@
   <ItemGroup>
     <Compile Remove="Airplane.Models\**" />
     <Compile Remove="Airplane.Services\**" />
+    <Compile Remove="Airplane.UnitTests\**" />
     <EmbeddedResource Remove="Airplane.Models\**" />
     <EmbeddedResource Remove="Airplane.Services\**" />
+    <EmbeddedResource Remove="Airplane.UnitTests\**" />
     <None Remove="Airplane.Models\**" />
     <None Remove="Airplane.Services\**" />
+    <None Remove="Airplane.UnitTests\**" />
   </ItemGroup>
 
   <ItemGroup>

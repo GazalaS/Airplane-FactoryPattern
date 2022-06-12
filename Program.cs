@@ -8,5 +8,5 @@ string fileName = @"C:\Input\commands.txt";
 var serviceProvider = ServicesExtensions.BuildServiceProvider();
 
 var airplaneNavigationService = serviceProvider.GetService<IAirplaneNavigationService>();
-airplaneNavigationService.Navigate(fileName);
+airplaneNavigationService?.Navigate(fileName);
 Console.ReadLine();
